@@ -912,9 +912,10 @@ const inputEl = document.getElementById("question");
 const sendBtn = document.getElementById("send-btn");
 
 const API_URL =
-  location.port === "5500"
+  location.hostname === "localhost"
     ? "http://127.0.0.1:8000/ask"
-    : "/ask";
+    : "https://protfolio-backend-njrc.onrender.com/ask";
+
 
 
 function addMessage(text, sender) {
