@@ -615,6 +615,31 @@ p, li {
   color: var(--text-main);
 }
 
+/* ===== DARK MODE LINK FIX ===== */
+[data-theme="dark"] a {
+  color: #93c5fd; /* light blue */
+}
+
+[data-theme="dark"] a:hover {
+  color: #bfdbfe;
+}
+
+
+.contact-links a {
+  margin-right: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+[data-theme="dark"] .contact-links a {
+  color: #93c5fd;
+}
+
+[data-theme="dark"] .contact-links a:hover {
+  color: #bfdbfe;
+}
+
+
 
 /* =========================================================
    ANIMATIONS
@@ -885,12 +910,13 @@ p, li {
   <h2>Contact Me</h2>
 
   <div class="contact-box">
-    <form action="mailto:er.harshpurohit@gmail.com" method="POST" enctype="text/plain">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" rows="4" placeholder="Your Message"></textarea>
-      <button class="btn" type="submit">Send Message</button>
-    </form>
+    <form id="contact-form">
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="email" id="email" placeholder="Your Email" required />
+    <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+    <button class="btn" type="submit">Send Message</button>
+  </form>
+
 
     <hr style="margin:1.5rem 0">
 
@@ -1017,6 +1043,21 @@ toggleBtn.onclick = () => {
   localStorage.setItem("theme", next);
   toggleBtn.textContent = next === "dark" ? "☀️" : "🌙";
 };
+
+const contactForm = document.getElementById("contact-form");
+
+contactForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const message = document.getElementById("message").value.trim();
+
+  if (!message) return;
+
+  const mailtoLink = `mailto:er.harshpurohit@gmail.com?subject=Portfolio Enquiry&body=${encodeURIComponent(message)}`;
+
+  window.location.href = mailtoLink;
+});
+
 
 </script>
 
